@@ -40,13 +40,16 @@ test ("CSS Selector",async ({page}) => {
 
   await page.locator("#cardType").selectOption('American Express')
 
-  await page.locator("#creditCardNumber").fill("8545662233")
-  await page.locator("[name='creditCardMonth']").clear()
-  await page.locator("[name='creditCardMonth']").fill('10')
-  await page.locator("[placeholder='Year']").fill("2026")
-  await page.locator("[id='nameOnCard']").fill("Jagadeesh")
-  await page.locator('.btn.btn-primary').click();
-  await page.waitForTimeout(2000);
+  // Enter payment information
+  await page.locator("#creditCardNumber").fill("8545662233") // Fill credit card number (test data)
+  await page.locator("[name='creditCardMonth']").clear() // Clear month field before entering value
+  await page.locator("[name='creditCardMonth']").fill('10') // Enter expiration month
+  await page.locator("[placeholder='Year']").fill("2026") // Enter expiration year
+  await page.locator("[id='nameOnCard']").fill("Jagadeesh") // Enter name on card
+
+  // Submit the purchase form and allow time for the confirmation page
+  await page.locator('.btn.btn-primary').click(); // Click Purchase
+  await page.waitForTimeout(2000); // Brief wait for navigation/processing
   await expect(page.locator("h1")).toHaveText("Thank you for your purchase today!"  )
 
 })
