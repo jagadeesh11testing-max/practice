@@ -13,12 +13,12 @@ test ("CSS Selector",async ({page}) => {
   await page.goto("https://blazedemo.com/")
   await page.setViewportSize({ width: 1920, height: 1080 });
   await expect(page.locator("h1")).toHaveText("Welcome to the Simple Travel Agency!")
-  await page.locator('[name="fromPort"]').selectOption('Boston');
-  await page.locator('[name="toPort"]').selectOption('New York');
+  await page.locator('[name="fromPort"]').selectOption('Mexico City');
+  await page.locator('[name="toPort"]').selectOption('Dublin');
   await page.getByRole('button', { name: 'Find Flights' }).click()
-  await expect(page.locator("h3")).toHaveText("Flights from Boston to New York:")
+  await expect(page.locator("h3")).toHaveText("Flights from Mexico City to Dublin:")
 
-  await page.getByRole('button', { name: 'Choose This Flight' }).first().click()
+  await page.getByRole('button', { name: 'Choose This Flight' }).nth(1).click()
 
 
 
