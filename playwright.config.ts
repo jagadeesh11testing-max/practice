@@ -33,7 +33,7 @@ export default defineConfig({
     screenshot: 'on',
     headless : false,
     video :'on',
-    viewport : {width:1280, height:720}
+    //viewport : {width:1920, height:1080}
 
   },
 
