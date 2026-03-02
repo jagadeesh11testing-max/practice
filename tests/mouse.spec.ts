@@ -14,3 +14,12 @@ test ("mouse oprtations double click", async ({page}) => {
     await page.waitForTimeout(2000)
 })
 
+test ("mouse Drag and Drop", async ({page}) => {
+    await page.goto("https://testautomationpractice.blogspot.com/")
+    const source = page.locator("#draggable")
+    const traget = page.locator("#droppable")
+    await source.dragTo(traget)
+    //await expect(page.locator("#droppable p")).toHaveText("Dropped!")
+
+
+})
