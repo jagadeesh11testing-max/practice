@@ -44,3 +44,24 @@ test("practise automation", async ({page}) => {
 
 })
 
+test("practise nested frames", async ({page}) => {
+    await page.goto("https://demo.automationtesting.in/Frames.html")
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.getByText("Iframe with in an Iframe", {exact:true}).click()
+    // Access nested frame
+    const frameLocator = page.frameLocator("#Multiple iframe")
+    const nestedFrame = frameLocator.frameLocator(".iframe-container iframe")
+    
+    // Identify and fill test box in nested frame
+    await nestedFrame.locator("input[type='text']").fill("Nested Frame Test")
+
+    
+    // Assertion for nested frame input
+    await expect(nestedFrame.locator("input[type='text']")).toHaveValue("Nested Frame Test")
+    
+    // Click home button
+    await page.getByRole('link', {name: "Home"}).click()
+    
+    // Validate email field assertion
+    await expect(page.locator("#email")).toBeVisible()
+})
